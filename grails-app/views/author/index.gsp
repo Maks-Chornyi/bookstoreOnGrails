@@ -11,10 +11,12 @@
 
     <div class="add-author">
         <h3>Add new Author</h3>
-        <p>Name<g:field type="text" name="name"></g:field>
-        Address<g:field type="text" name="address"></g:field>
-        Info<g:field type="text" name="info"></g:field>
-        <g:field type="submit" name="info" value="Add"></g:field></p>
+        <g:form controller="author" action="save">
+            <label>Name: </label><g:textField name="name"/>
+            <label>Address: </label><g:textField name="address" />
+            <label>Info: </label><g:textField name="authorInfo" />
+            <g:actionSubmit value="Add" />
+        </g:form>
     </div>
 
     <table>

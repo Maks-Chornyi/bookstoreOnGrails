@@ -10,6 +10,13 @@
     text-align: center;
 }
 
+.authors-info {
+    background-color: #00b300;
+    font-size: 1.1em;
+    margin: 20px auto;
+    padding: 15px;
+    width: 800px;
+}
 table {
     border-collapse: collapse;
     width: 80%;

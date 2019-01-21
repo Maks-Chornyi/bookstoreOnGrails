@@ -3,14 +3,19 @@ package bookstoreongrails
 class AuthorController {
 
     AuthorService authorService
-    //static allowedMethods = [save: 'POST']
+    static allowedMethods = [save: 'POST']
 
     def index() {
         List<Author> authors = authorService.getAllAuthors()
+        Author unsuccessfulAuthor = authorService.getUnsuccessfulAuthor(authors)
+        Author mostSuccessfulAuthor = authorService.getMostSuccessfulAuthor(authors)
         [
                 authors : authors,
-                unsuccessfulAuthor : authorService.getUnsuccessfulAuthor(authors),
-                mostSuccessfulAuthor : authorService.getMostSuccessfulAuthor(authors)
+                authorsAmount : authors.size(),
+                unsuccessfulAuthor : unsuccessfulAuthor,
+                mostSuccessfulAuthor : mostSuccessfulAuthor,
+                countOfBooksOfUnsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(unsuccessfulAuthor),
+                countOfBooksOfMostsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(mostSuccessfulAuthor),
         ]
     }
 
@@ -19,4 +24,6 @@ class AuthorController {
         author.save()
         redirect(action: "index")
     }
+
+
 }

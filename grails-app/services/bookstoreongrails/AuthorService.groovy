@@ -48,4 +48,13 @@ class AuthorService {
         }
         unsuccessfulAuthor
     }
+
+    int getCountOfPublishedBookOfAuthor(Author author) {
+        int countOfAllBooks = 0;
+        Set<Book> books = author.books
+        books.each {book ->
+            countOfAllBooks += book.countOfCopies
+        }
+        countOfAllBooks
+    }
 }

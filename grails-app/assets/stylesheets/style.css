@@ -3,7 +3,8 @@
     font-size: 1.4em;
     margin: 20px auto;
     padding: 15px;
-    width: 800px;
+    min-width: 1100px;
+    text-align: center;
 }
 
 .add-author h3 {

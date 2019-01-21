@@ -13,25 +13,28 @@
         <h3>Add new Author</h3>
         <g:form controller="author" action="save">
             <label>Name: </label><g:textField name="name"/>
-            <label>Address: </label><g:textField name="address" />
-            <label>Info: </label><g:textField name="authorInfo" />
-            <g:actionSubmit value="Add" />
+            <label>Birthday: </label><g:datePicker precision="day" name="birthday"/>
+            <label>Address: </label><g:textField name="address"/>
+            <label>Info: </label><g:textField name="authorInfo"/>
+            <g:actionSubmit name="save" value="Save" />
         </g:form>
     </div>
 
     <table>
         <thead>
             <tr>
-                <th>first</th>
-                <th>second</th>
-                <th>third</th>
-                <th>fourth</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Address</th>
+                <th>Info</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         <g:each var="author" in="${authors}">
             <tr>
                 <td>${author.name}</td>
+                <td><g:formatDate format="yyyy/MM/dd" date="${author.birthday}"/></td>
                 <td>${author.address}</td>
                 <td>${author.authorInfo}</td>
                 <td>smth else</td>
@@ -40,10 +43,9 @@
         </tbody>
     </table>
 <div class="authors-info">
-    <p>1</p>
-    <p>2</p>
-    <p>3</p>
-    <p>1</p>
+    <p>We have <strong>${authorsAmount}</strong> author <g:if test="${authors.size() > 1}">s</g:if> in DB</p>
+    <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
+    <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
 </div>
 
 

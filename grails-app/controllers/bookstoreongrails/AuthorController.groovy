@@ -25,5 +25,9 @@ class AuthorController {
         redirect(action: "index")
     }
 
-
+    def deleteAuthor(int id) {
+        Author author = Author.get(id)
+        author.delete()
+        redirect(action: "index")
+    }
 }

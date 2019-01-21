@@ -4,9 +4,14 @@
 <head>
     <title>Author`s index page</title>
     <asset:stylesheet src="style.css"/>
+    <asset:javascript src="jquery-3.3.1.min.js"/>
+    <asset:javascript src="my_jQuery.js"/>
 </head>
 
 <body>
+<g:form controller="author" action="deleteAuthor" id="deleteAuthorForm">
+    <input id="deleteAuthorInput" type="hidden" name="id" value="">
+</g:form>
     <h1>Authors</h1>
 
     <div class="add-author">

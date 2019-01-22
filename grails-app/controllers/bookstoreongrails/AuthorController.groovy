@@ -72,7 +72,7 @@ class AuthorController {
             //if author hasn't books
             return [
                     author : author,
-                    allBooks : bookService.allBooks
+                    authorsBooks : author.books*.id
             ]
         }
     }

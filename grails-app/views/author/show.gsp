@@ -44,14 +44,16 @@
                 <td><g:textField name="authorInfo" value="${author.authorInfo}"/></td>
             </tr>
         </table>
-        <g:select name="books"
-                  from="${bookstoreongrails.Book.list()}"
-                  value=""
-                  optionKey="id"
-                  optionValue="title"
-                  multiple="true">
 
-        </g:select>
+        <div>
+            <g:select name="books"
+                        from="${bookstoreongrails.Book.list()}"
+                        value="${authorsBooks}"
+                        optionKey="id"
+                        optionValue="title"
+                        multiple="true">
+            </g:select>
+        </div>
         <g:submitButton name="submit" value="Save"/>
     </g:form>
 </div>

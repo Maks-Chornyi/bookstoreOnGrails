@@ -9,8 +9,8 @@
 </head>
 
 <body>
-<g:form controller="author" action="deleteAuthor" id="deleteAuthorForm">
-    <input id="deleteAuthorInput" type="hidden" name="id" value="">
+<g:form action="deleteAuthor" class="deleteAuthorForm">
+    <input type="hidden" name="id" value="5" id="deleteAuthorInput"/>
 </g:form>
     <h1>Authors</h1>
 
@@ -42,16 +42,16 @@
                 <td><g:formatDate format="yyyy/MM/dd" date="${author.birthday}"/></td>
                 <td>${author.address}</td>
                 <td>${author.authorInfo}</td>
-                <td>smth else</td>
+                <td><a href="/author/show/${author.id}"><button>Open</button></a> <button onclick="deleteAuthor(${author.id})">Delete</button></td>
             </tr>
         </g:each>
         </tbody>
     </table>
-<div class="authors-info">
-    <p>We have <strong>${authorsAmount}</strong> author <g:if test="${authors.size() > 1}">s</g:if> in DB</p>
-    <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
-    <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
-</div>
+    <div class="authors-info">
+        <p>We have <strong>${authorsAmount}</strong> author<g:if test="${authors.size() > 1}">s</g:if> in DB</p>
+        <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
+        <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
+    </div>
 
 
 </body>

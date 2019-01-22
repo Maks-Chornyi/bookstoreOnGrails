@@ -1,9 +1,11 @@
 package bookstoreongrails
 
+import org.springframework.web.bind.annotation.PathVariable
+
 class AuthorController {
 
     AuthorService authorService
-    static allowedMethods = [save: 'POST']
+    static allowedMethods = [save: 'POST', deleteAuthor: 'POST']
 
     def index() {
         List<Author> authors = authorService.getAllAuthors()
@@ -25,9 +27,18 @@ class AuthorController {
         redirect(action: "index")
     }
 
-    def deleteAuthor(int id) {
-        Author author = Author.get(id)
-        author.delete()
+    def deleteAuthor() {
+        Author author = Author.get(params.id)
+        try {
+            author.delete(flush: true)
+        } catch (Exception e) {
+            e.getStackTrace()
+        }
+
         redirect(action: "index")
+    }
+
+    def show(int id) {
+        [author : Author.get(id)]
     }
 }

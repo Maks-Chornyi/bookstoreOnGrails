@@ -13,6 +13,28 @@ class AuthorService {
         Author.list()
     }
 
+    List<Author> sortAuthorsByBirthday(List<Author> authors) {
+        Collections.sort(authors, new Comparator<Author>() {
+            int compare(Author o1, Author o2) {
+                if(o1 == null || o2 == null) {
+                    return 0
+                }
+                o2.getBirthday() <=> o1.getBirthday()
+            }
+        })
+        authors
+    }
+
+    Author getYoungestAuthor(List<Author> authors) {
+        authors = sortAuthorsByBirthday(authors)
+        authors.get(0)
+    }
+
+    Author getOldestAuthor(List<Author> authors) {
+        authors = sortAuthorsByBirthday(authors)
+        authors.get((authors.size()-1))
+    }
+
     Author getMostSuccessfulAuthor(List<Author> authors) {
         Author mostSuccessfulAuthor = authors.get(0)
         int maxBookCount = 0

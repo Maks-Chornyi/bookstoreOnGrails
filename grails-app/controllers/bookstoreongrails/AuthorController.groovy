@@ -1,10 +1,10 @@
 package bookstoreongrails
 
-import org.springframework.web.bind.annotation.PathVariable
 
 class AuthorController {
 
     AuthorService authorService
+    BookService bookService
     static allowedMethods = [save: 'POST', deleteAuthor: 'POST']
 
     def index() {
@@ -27,6 +27,16 @@ class AuthorController {
         redirect(action: "index")
     }
 
+    def edit() {
+        Author author = Author.get(params.id)
+        author.name = params.name
+        author.birthday = params.birthday
+        author.address = params.address
+        author.authorInfo = params.authorInfo
+        author.save()
+        redirect(action: "index")
+    }
+
     def deleteAuthor() {
         Author author = Author.get(params.id)
         try {
@@ -39,6 +49,31 @@ class AuthorController {
     }
 
     def show(int id) {
-        [author : Author.get(id)]
+        Author author = Author.get(id)
+        Set<Book> authorsBooks = author.books
+        if(authorsBooks.size() > 0) {
+            Book mostSuccessfulBook =  bookService.getMostSuccessfulBook(authorsBooks)
+            Book unsuccessfulBook = bookService.getUnsuccessfulBook(authorsBooks)
+            Book firstAuthorBook = bookService.getFirstBookOfAuthor(authorsBooks)
+            Book lastAuthorBook = bookService.getLastBookOfAuthor(authorsBooks)
+            return [
+                author : author,
+                countOfAuthorsBooks : author.books.size(),
+                mostSuccessfulBook : mostSuccessfulBook,
+                countOfCopiesOfMostSuccessfulBook : mostSuccessfulBook.countOfCopies,
+                unsuccessfulBook : unsuccessfulBook,
+                countofCopiesOfUnsuccessfulBook : unsuccessfulBook.countOfCopies,
+                firstBookOfAuthor : firstAuthorBook,
+                publishDateOfFirstBook : firstAuthorBook.publishDate,
+                lastBookOfAuthor : lastAuthorBook,
+                publishDateOfLastBook : lastAuthorBook.publishDate
+            ]
+        } else {
+            //if author hasn't books
+            return [
+                    author : author,
+                    allBooks : bookService.allBooks
+            ]
+        }
     }
 }

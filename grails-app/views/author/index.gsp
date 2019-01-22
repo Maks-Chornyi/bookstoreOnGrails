@@ -25,7 +25,7 @@
         </g:form>
     </div>
 
-    <table>
+    <table class="show-all-author">
         <thead>
             <tr>
                 <th>Name</th>

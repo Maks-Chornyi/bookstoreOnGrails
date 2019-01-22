@@ -18,7 +18,7 @@
     padding: 15px;
     width: 800px;
 }
-table {
+.show-all-author {
     border-collapse: collapse;
     width: 80%;
     min-width: 500px;
@@ -26,22 +26,28 @@ table {
     margin: 10px auto;
 }
 
-table, th, td {
+.show-all-author, th, td {
     border: 1px solid black;
     text-align: center;
     padding: 5px;
 }
 
-th {
+.show-all-author th {
     background-color: #4CAF50;
     color: white;
 }
 
-tr:nth-child(even) {
+.show-all-author tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 h1 {
     text-align: center;
     font-size: 2.0em;
+}
+
+.edit-table-author th, td{
+    border: 0px solid black;
+    border-collapse: collapse;
+    text-align: right;
 }

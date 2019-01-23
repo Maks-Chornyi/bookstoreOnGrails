@@ -9,13 +9,16 @@ function deleteAuthor(id) {
         console.log("You decided don't delete this author =)");
     }
 }
-
+function openAuthorInfo(id) {
+        $.post('getAuthorInfoById', {
+                id : id
+            },
+            function (data, status) {
+                $("#authddorInfo").html(data.id);
+            });
+}
 
 
 $(document).ready(function() {
-    function openAuthorInfo(id) {
-        $("#openAuthorInfo").click(function() {
 
-        });
-    }
 });

@@ -43,7 +43,11 @@
                 <td><g:formatDate format="yyyy/MM/dd" date="${author.birthday}"/></td>
                 <td>${author.address}</td>
                 <td>${author.authorInfo}</td>
-                <td><a href="/author/show/${author.id}"><button>Edit</button></a> <button onclick="openAuthorInfo(${author.id})" id="openAuthorInfo">Info</button><button onclick="deleteAuthor(${author.id})">Delete</button></td>
+                <td>
+                    <a href="/author/show/${author.id}"><button>Edit</button></a>
+                    <button onclick="openAuthorInfo(${author.id})" id="openAuthorInfo">Info</button>
+                    <button onclick="deleteAuthor(${author.id})">Delete</button>
+                </td>
             </tr>
         </g:each>
         </tbody>
@@ -52,6 +56,7 @@
         <p>We have <strong>${authorsAmount}</strong> author<g:if test="${authors.size() > 1}">s</g:if> in DB</p>
         <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
         <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
+        <p id="authddorInfo"></p>
     </div>
 
 

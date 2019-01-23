@@ -9,6 +9,14 @@ class AuthorService {
 
     }
 
+    void save(Map<String, Object> params) {
+        new Author(params).save()
+    }
+
+    Author getAuthorInfoById(Map<String, Object> params) {
+        Author.get(params.id)
+    }
+
     void update(Map<String, Object> params) {
 
         Author author = Author.get(params.id)

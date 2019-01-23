@@ -1,5 +1,7 @@
 package bookstoreongrails
 
+import grails.converters.JSON
+
 
 class AuthorController {
 
@@ -22,14 +24,18 @@ class AuthorController {
     }
 
     def save() {
-        def author = new Author(params)
-        author.save()
+        authorService.save(params)
         redirect(action: "index")
     }
 
     def update() {
         authorService.update(params)
         redirect(action: "index")
+    }
+
+    def getAuthorInfoById() {
+        render authorService.getAuthorInfoById(params) as JSON
+
     }
 
     def deleteAuthor() {

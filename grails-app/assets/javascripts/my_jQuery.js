@@ -10,6 +10,12 @@ function deleteAuthor(id) {
     }
 }
 
-$(document).ready(function() {
 
+
+$(document).ready(function() {
+    function openAuthorInfo(id) {
+        $("#openAuthorInfo").click(function() {
+
+        });
+    }
 });

@@ -59,7 +59,8 @@ class BookService {
     }
 
     Set<Book> sortBooksByPublishDate(Set<Book> books) {
-        Collections.sort(books, new Comparator<Book>() {
+        List<Book> bookList = new ArrayList<>(books)
+        Collections.sort(bookList, new Comparator<Book>() {
             int compare(Book b1, Book b2) {
                 if(b1 == null || b2 == null) {
                     return 0
@@ -67,17 +68,17 @@ class BookService {
                 b2.publishDate <=> b1.publishDate
             }
         })
-        books
+        bookList.toSet()
     }
 
     Book getLastBookOfAuthor(Set<Book> books) {
         sortBooksByPublishDate(books)
-        books.get(0)
+        books[0]
     }
 
     Book getFirstBookOfAuthor(Set<Book> books) {
         sortBooksByPublishDate(books)
-        books.get(books.size() - 1)
+        books[books.size() - 1]
     }
 
 }

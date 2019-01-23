@@ -5,7 +5,7 @@ class AuthorController {
 
     AuthorService authorService
     BookService bookService
-    static allowedMethods = [save: 'POST', deleteAuthor: 'POST']
+    static allowedMethods = [save: 'POST', deleteAuthor: 'POST', update: 'POST']
 
     def index() {
         List<Author> authors = authorService.getAllAuthors()
@@ -27,13 +27,8 @@ class AuthorController {
         redirect(action: "index")
     }
 
-    def edit() {
-        Author author = Author.get(params.id)
-        author.name = params.name
-        author.birthday = params.birthday
-        author.address = params.address
-        author.authorInfo = params.authorInfo
-        author.save()
+    def update() {
+        authorService.update(params)
         redirect(action: "index")
     }
 
@@ -58,6 +53,7 @@ class AuthorController {
             Book lastAuthorBook = bookService.getLastBookOfAuthor(authorsBooks)
             return [
                 author : author,
+                authorsBooks : authorsBooks,
                 countOfAuthorsBooks : author.books.size(),
                 mostSuccessfulBook : mostSuccessfulBook,
                 countOfCopiesOfMostSuccessfulBook : mostSuccessfulBook.countOfCopies,

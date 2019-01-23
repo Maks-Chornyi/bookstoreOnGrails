@@ -9,6 +9,13 @@ class AuthorService {
 
     }
 
+    void update(Map<String, Object> params) {
+
+        Author author = Author.get(params.id)
+        author.properties = params
+        author.save(failOnError: true)
+    }
+
     List<Author> getAllAuthors() {
         Author.list()
     }

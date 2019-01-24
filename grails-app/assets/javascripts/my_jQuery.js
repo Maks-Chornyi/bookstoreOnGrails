@@ -14,11 +14,22 @@ function openAuthorInfo(id) {
                 id : id
             },
             function (data, status) {
-                $("#authddorInfo").html(data.id);
+                var dt = data;
+                $("#authorNameDialog").html('Name: ' + data.name);
+                $("#authorInfoDialog").html('Info: ' + data.authorInfo);
+                $("#addressDialog").html('Address: ' + data.address);
+                $("#countOfBooksDialog").html('Amount of books: ' + data.books.length);
+                $("#birthdayDialog").html('Bidthday: ' + data.birthday);
+
+                console.log();
+
             });
+        $('#dialog').dialog('open');
 }
 
 
 $(document).ready(function() {
-
+    $( "#dialog" ).dialog({
+        autoOpen: false
+    });
 });

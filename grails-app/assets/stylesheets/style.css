@@ -51,3 +51,72 @@ h1 {
     border-collapse: collapse;
     text-align: right;
 }
+
+
+.show-all-books{
+    border-collapse: collapse;
+    width: 80%;
+    min-width: 500px;
+
+    margin: 10px auto;
+}
+
+.show-all-books, th, td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px;
+}
+
+.show-all-books th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.show-all-books tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#add-book-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0px auto;
+}
+
+#add-book-button:hover {
+    background-color: #00b300;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+.add-book-table td {
+    border: 0px solid black;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.add-book-table {
+    margin: 0 auto;
+}
+
+#addNewAuthorButton {
+    width: 500px;
+}
+
+#addNewBookButton {
+    margin: 0px auto;
+}

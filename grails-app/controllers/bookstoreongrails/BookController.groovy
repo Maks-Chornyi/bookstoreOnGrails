@@ -4,5 +4,7 @@ class BookController {
 
     BookService bookService
 
-    def index() { }
+    def index() {
+        [books : Book.list()]
+    }
 }

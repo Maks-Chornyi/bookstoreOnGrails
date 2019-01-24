@@ -27,9 +27,18 @@ function openAuthorInfo(id) {
         $('#dialog').dialog('open');
 }
 
+function openDialogForAddingBook() {
+    $('#addNewAuthorButton').dialog('open');
+}
+
 
 $(document).ready(function() {
-    $( "#dialog" ).dialog({
+    $("#dialog").dialog({
         autoOpen: false
+    });
+
+    $("#addNewAuthorButton").dialog({
+        autoOpen: false,
+        width: "500px"
     });
 });

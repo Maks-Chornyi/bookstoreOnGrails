@@ -29,7 +29,7 @@ function openAuthorInfo(id) {
         $.post('getAuthorInfoById', {
                 id : id
             },
-            function (data, status) {
+            function (data) {
                 $("#authorNameDialog").html(data.name);
                 $("#authorInfoDialog").html(data.authorInfo);
                 $("#addressDialog").html(data.address);

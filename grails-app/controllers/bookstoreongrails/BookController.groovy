@@ -9,9 +9,6 @@ class BookController {
     }
 
     def addNewBook() {
-        params.keySet().each {e ->
-            println e
-        }
         new Book(params).save()
         redirect(action: "index")
     }

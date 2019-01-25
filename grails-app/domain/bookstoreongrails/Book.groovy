@@ -15,6 +15,5 @@ class Book {
         title()
         publishDate()
         countOfCopies()
-        //authors(nullable: true)
     }
 }

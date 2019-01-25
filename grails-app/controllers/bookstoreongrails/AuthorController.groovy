@@ -9,6 +9,7 @@ class AuthorController {
     BookService bookService
     static allowedMethods = [save: 'POST', deleteAuthor: 'POST', update: 'POST']
 
+
     def index() {
         List<Author> authors = authorService.getAllAuthors()
         if(authors.size() > 0) {
@@ -21,6 +22,7 @@ class AuthorController {
                     mostSuccessfulAuthor : mostSuccessfulAuthor,
                     countOfBooksOfUnsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(unsuccessfulAuthor),
                     countOfBooksOfMostsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(mostSuccessfulAuthor),
+                    youngestAuthor : authorService.getYoungestAuthor(authors)
             ]
         } else {
             [authors : authors]

@@ -30,11 +30,11 @@ function openAuthorInfo(id) {
                 id : id
             },
             function (data, status) {
-                $("#authorNameDialog").html('Name: ' + data.name);
-                $("#authorInfoDialog").html('Info: ' + data.authorInfo);
-                $("#addressDialog").html('Address: ' + data.address);
-                $("#countOfBooksDialog").html('Amount of books: ' + data.books.length);
-                $("#birthdayDialog").html('Bidthday: ' + data.birthday);
+                $("#authorNameDialog").html(data.name);
+                $("#authorInfoDialog").html(data.authorInfo);
+                $("#addressDialog").html(data.address);
+                $("#countOfBooksDialog").html(data.books.length);
+                $("#birthdayDialog").html(data.birthday);
             });
         $('#dialog').dialog('open');
 }
@@ -42,7 +42,6 @@ function openAuthorInfo(id) {
 function openDialogForAddingBook() {
     $('#addNewBookButton').dialog('open');
 }
-
 
 $(document).ready(function() {
     $("#dialog").dialog({
@@ -54,14 +53,3 @@ $(document).ready(function() {
         width: "500px"
     });
 });
-
-/*
-function deleteBook(id) {
-    var confirmation = confirm('Do you really wanna delete this author');
-    if(confirmation) {
-        $('#deleteAuthorInput').attr("value",id);
-        $('.deleteAuthorForm').submit();
-    } else {
-        console.log("You decided don't delete this author =)");
-    }
-}*/

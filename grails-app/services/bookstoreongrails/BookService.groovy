@@ -1,6 +1,7 @@
 package bookstoreongrails
 
 import grails.gorm.transactions.Transactional
+import grails.web.servlet.mvc.GrailsParameterMap
 
 @Transactional
 class BookService {
@@ -81,4 +82,12 @@ class BookService {
         books[books.size() - 1]
     }
 
+    def deleteBookById(GrailsParameterMap grailsParameterMap) {
+        Book book = Book.get(grailsParameterMap.id)
+        Set<Author> authors = book.authors
+        authors.each {Author author ->
+            book.removeFromAuthors(author)
+        }
+        book.delete(flush: true)
+    }
 }

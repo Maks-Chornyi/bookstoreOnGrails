@@ -3,6 +3,7 @@ package bookstoreongrails
 class Author {
 
     static hasMany = [books:Book]
+    //static mapping = {books cascade: 'none'}
 
     String name
     Date birthday

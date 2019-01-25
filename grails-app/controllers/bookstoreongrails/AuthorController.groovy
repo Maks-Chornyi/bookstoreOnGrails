@@ -11,16 +11,20 @@ class AuthorController {
 
     def index() {
         List<Author> authors = authorService.getAllAuthors()
-        Author unsuccessfulAuthor = authorService.getUnsuccessfulAuthor(authors)
-        Author mostSuccessfulAuthor = authorService.getMostSuccessfulAuthor(authors)
-        [
-                authors : authors,
-                authorsAmount : authors.size(),
-                unsuccessfulAuthor : unsuccessfulAuthor,
-                mostSuccessfulAuthor : mostSuccessfulAuthor,
-                countOfBooksOfUnsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(unsuccessfulAuthor),
-                countOfBooksOfMostsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(mostSuccessfulAuthor),
-        ]
+        if(authors.size() > 0) {
+            Author unsuccessfulAuthor = authorService.getUnsuccessfulAuthor(authors)
+            Author mostSuccessfulAuthor = authorService.getMostSuccessfulAuthor(authors)
+            [
+                    authors : authors,
+                    authorsAmount : authors.size(),
+                    unsuccessfulAuthor : unsuccessfulAuthor,
+                    mostSuccessfulAuthor : mostSuccessfulAuthor,
+                    countOfBooksOfUnsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(unsuccessfulAuthor),
+                    countOfBooksOfMostsuccessfulAuthor : authorService.getCountOfPublishedBookOfAuthor(mostSuccessfulAuthor),
+            ]
+        } else {
+            [authors : authors]
+        }
     }
 
     def save() {
@@ -35,7 +39,6 @@ class AuthorController {
 
     def getAuthorInfoById() {
         render authorService.getAuthorInfoById(params) as JSON
-
     }
 
     def deleteAuthor() {

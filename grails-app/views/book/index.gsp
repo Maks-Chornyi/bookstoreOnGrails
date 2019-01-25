@@ -20,9 +20,12 @@
 </head>
 
 <body>
-    <div>
-        <button id="add-book-button" onclick="openDialogForAddingBook()">Add New Author</button>
+
+    <div class="div-add-book-button">
+        <button id="add-book-button" onclick="openDialogForAddingBook()">Add New Book</button>
     </div>
+
+
     <table class="show-all-books">
         <thead>
             <tr>
@@ -34,24 +37,35 @@
             </tr>
         </thead>
         <tbody>
-            <g:each var="book" in="${books}">
-                <tr>
-                    <td>${book.title}</td>
-                    <td>${book.ISBN}</td>
-                    <td><g:formatDate format="yyyy/MM/dd" date="${book.publishDate}"/></td>
-                    <td>${book.countOfCopies}</td>
-                    <td>
-                        <button>Edit</button>
-                        <button>Info</button>
-                        <button>Delete</button>
+            <g:if test="${books.size() > 0}">
+                <g:each var="book" in="${books}">
+                    <tr>
+                        <td>${book.title}</td>
+                        <td>${book.ISBN}</td>
+                        <td><g:formatDate format="yyyy/MM/dd" date="${book.publishDate}"/></td>
+                        <td>${book.countOfCopies}</td>
+                        <td>
+                            <button>Edit</button>
+                            <button>Info</button>
+                            <button onclick="deleteBook(${book.id})">Delete</button>
 
-                    </td>
+                        </td>
+                    </tr>
+                </g:each>
+            </g:if>
+            <g:else>
+                <tr>
+                    <td>empty</td>
+                    <td>empty</td>
+                    <td>empty</td>
+                    <td>empty</td>
+                    <td>empty</td>
                 </tr>
-            </g:each>
+            </g:else>
         </tbody>
     </table>
 
-    <div id="addNewAuthorButton" title="Add New Author" hidden="hidden">
+    <div id="addNewBookButton" title="Add New Author" hidden="hidden">
         <g:form controller="book" action="addNewBook">
             <table class="add-book-table">
                 <tr>
@@ -71,7 +85,8 @@
                     <td><g:textField name="countOfCopies"/></td>
                 </tr>
             </table>
-            <g:submitButton id="addNewBookButton" name="add" value="Add"/>
+
+            <div class="submit-new-book"><g:submitButton name="add" value="Add"/></div>
         </g:form>
     </div>
 </body>

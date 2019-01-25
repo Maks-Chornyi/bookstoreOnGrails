@@ -41,6 +41,7 @@
             </tr>
         </thead>
         <tbody>
+        <g:if test="${authors.size() > 0}">
         <g:each var="author" in="${authors}">
             <tr>
                 <td>${author.name}</td>
@@ -54,14 +55,27 @@
                 </td>
             </tr>
         </g:each>
+        </g:if>
+        <g:else>
+            <tr>
+                <td>empty</td>
+                <td>empty</td>
+                <td>empty</td>
+                <td>empty</td>
+                <td>empty</td>
+            </tr>
+        </g:else>
         </tbody>
     </table>
-    <div class="authors-info">
-        <p>We have <strong>${authorsAmount}</strong> author<g:if test="${authors.size() > 1}">s</g:if> in DB</p>
-        <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
-        <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
-        <p id="authddorInfo"></p>
-    </div>
+    <g:if test="${authors.size() > 0}">
+        <div class="authors-info">
+            <p>We have <strong>${authorsAmount}</strong> author<g:if test="${authors.size() > 1}">s</g:if> in DB</p>
+
+            <p>Most successful author is <strong>${mostSuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfMostsuccessfulAuthor}</strong> books </p>
+            <p>Unsuccessful author is <strong>${unsuccessfulAuthor.name}</strong>, author has <strong>${countOfBooksOfUnsuccessfulAuthor}</strong> books </p>
+            <p id="authddorInfo"></p>
+        </div>
+    </g:if>
     <div id="dialog" title="Author info" hidden="hidden">
         <p id="authorNameDialog"></p>
         <p id="authorInfoDialog"></p>

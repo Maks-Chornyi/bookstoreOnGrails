@@ -86,22 +86,12 @@ h1 {
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    margin: 0px auto;
+    width: 175px;
 }
 
-#add-book-button:hover {
-    background-color: #00b300;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+.div-add-book-button {
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
 }
-
-
 
 .add-book-table td {
     border: 0px solid black;
@@ -119,4 +109,8 @@ h1 {
 
 #addNewBookButton {
     margin: 0px auto;
+}
+
+.submit-new-book {
+    text-align: center;
 }

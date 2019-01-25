@@ -2,7 +2,7 @@ package bookstoreongrails
 
 class Book {
 
-    static belongsTo = Author
+    static belongsTo = [Author]
     static hasMany = [authors:Author]
 
     String ISBN
@@ -15,5 +15,6 @@ class Book {
         title()
         publishDate()
         countOfCopies()
+        //authors(nullable: true)
     }
 }

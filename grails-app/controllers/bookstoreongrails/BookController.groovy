@@ -2,8 +2,6 @@ package bookstoreongrails
 
 import grails.plugins.redis.RedisService
 
-import java.time.Instant
-
 class BookController {
 
     BookService bookService

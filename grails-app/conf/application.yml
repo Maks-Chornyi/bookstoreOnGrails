@@ -96,11 +96,19 @@ dataSource:
     username: root
     password: root
 
+
+
 environments:
     development:
         dataSource:
             dbCreate: update
             url: jdbc:mysql://localhost:3306/bookstore?createDatabaseIfNotExist=true&useSSL=false
+        grails:
+            redis:
+                maxIdle: 10
+                doesnotexist: true
+                database: 3
+
     test:
         dataSource:
             dbCreate: update
@@ -129,3 +137,5 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 server:
     port: 8091
+
+

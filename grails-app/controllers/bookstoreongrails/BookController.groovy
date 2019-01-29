@@ -1,15 +1,20 @@
 package bookstoreongrails
 
+import grails.plugins.redis.RedisService
+
+import java.time.Instant
+
 class BookController {
 
     BookService bookService
+    RedisService redisService
 
     def index() {
         [books : Book.list()]
     }
 
     def addNewBook() {
-        new Book(params).save()
+        bookService.addNewBook(params)
         redirect(action: "index")
     }
 

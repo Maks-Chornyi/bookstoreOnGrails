@@ -1,10 +1,16 @@
 package bookstoreongrails
 
 import grails.gorm.transactions.Transactional
+import grails.plugins.redis.RedisService
 import grails.web.servlet.mvc.GrailsParameterMap
+import groovy.json.JsonBuilder
+
+import java.time.Instant
 
 @Transactional
 class BookService {
+
+    RedisService redisService
 
     def serviceMethod() {
 
@@ -12,6 +18,17 @@ class BookService {
 
     List<Book> getAllBooks() {
         Book.list()
+    }
+
+    void addNewBook(GrailsParameterMap grailsParameterMap) {
+        Book book = new Book(grailsParameterMap)
+        book.save()
+        //String bookJSON = new JsonBuilder(book).toPrettyString()
+        String bookJSON = book.toString()
+        println bookJSON
+        Long timeStampMls = Instant.now().toEpochMilli()
+        String newLogKey = Long.toString(timeStampMls)
+        redisService.sadd(newLogKey, bookJSON)
     }
 
     /**

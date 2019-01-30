@@ -107,7 +107,6 @@ environments:
             redis:
                 maxIdle: 10
                 doesnotexist: true
-                database: 3
 
     test:
         dataSource:

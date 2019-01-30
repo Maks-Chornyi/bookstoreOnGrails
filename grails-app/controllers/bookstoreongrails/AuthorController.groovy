@@ -5,10 +5,10 @@ import grails.converters.JSON
 
 class AuthorController {
 
-    AuthorService authorService
-    BookService bookService
     static allowedMethods = [save: 'POST', deleteAuthor: 'POST', update: 'POST']
 
+    AuthorService authorService
+    BookService bookService
 
     def index() {
         List<Author> authors = authorService.getAllAuthors()
@@ -44,17 +44,14 @@ class AuthorController {
     }
 
     def deleteAuthor() {
-        Author author = Author.get(params.id)
-        try {
-            author.delete(flush: true)
-        } catch (Exception e) {
-            e.getStackTrace()
-        }
+        authorService.deleteAuthor(params)
+
 
         redirect(action: "index")
     }
 
     def show(int id) {
+        def modelMap
         Author author = Author.get(id)
         Set<Book> authorsBooks = author.books
         if(authorsBooks.size() > 0) {
@@ -62,7 +59,7 @@ class AuthorController {
             Book unsuccessfulBook = bookService.getUnsuccessfulBook(authorsBooks)
             Book firstAuthorBook = bookService.getFirstBookOfAuthor(authorsBooks)
             Book lastAuthorBook = bookService.getLastBookOfAuthor(authorsBooks)
-            return [
+            modelMap =  [
                 author : author,
                 authorsBooks : authorsBooks,
                 countOfAuthorsBooks : author.books.size(),
@@ -77,10 +74,11 @@ class AuthorController {
             ]
         } else {
             //if author hasn't books
-            return [
+            modelMap =  [
                     author : author,
                     authorsBooks : author.books*.id
             ]
         }
+        modelMap
     }
 }

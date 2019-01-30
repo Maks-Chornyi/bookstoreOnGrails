@@ -1,18 +1,16 @@
 package bookstoreongrails
 
-import com.fasterxml.jackson.core.JsonGenerator
+import enums.Action
 import grails.converters.JSON
 import grails.gorm.transactions.Transactional
 import grails.plugins.redis.RedisService
 import grails.web.servlet.mvc.GrailsParameterMap
-import groovy.json.JsonOutput
-
-import java.time.Instant
 
 @Transactional
 class BookService {
 
     RedisService redisService
+    LogService logService
 
     def serviceMethod() {
 
@@ -25,10 +23,17 @@ class BookService {
     void addNewBook(GrailsParameterMap grailsParameterMap) {
         Book book = new Book(grailsParameterMap)
         book.save()
-        Long timeStampMls = new Date().getTime()
-        String bookJSON = book as JSON
-        String newLogKey = Long.toString(timeStampMls)
-        redisService.hset("Adding",newLogKey,"Added new book: " + bookJSON)
+        logService.log("logs", book, Action.CREATED)
+    }
+
+    def deleteBookById(GrailsParameterMap grailsParameterMap) {
+        Book book = Book.get(grailsParameterMap.id)
+        Set<Author> authors = book.authors
+        authors.each {Author author ->
+            book.removeFromAuthors(author)
+        }
+        book.delete(flush: true)
+        //logService.log("DeletedBook", book)
     }
 
     /**
@@ -97,14 +102,5 @@ class BookService {
     Book getFirstBookOfAuthor(Set<Book> books) {
         sortBooksByPublishDate(books)
         books[books.size() - 1]
-    }
-
-    def deleteBookById(GrailsParameterMap grailsParameterMap) {
-        Book book = Book.get(grailsParameterMap.id)
-        Set<Author> authors = book.authors
-        authors.each {Author author ->
-            book.removeFromAuthors(author)
-        }
-        book.delete(flush: true)
     }
 }

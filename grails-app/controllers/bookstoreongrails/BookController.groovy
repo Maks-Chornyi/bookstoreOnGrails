@@ -1,14 +1,11 @@
 package bookstoreongrails
 
-import grails.plugins.redis.RedisService
-
 class BookController {
 
     BookService bookService
-    RedisService redisService
 
     def index() {
-        [books : Book.list()]
+        [books : bookService.getAllBooks()]
     }
 
     def addNewBook() {

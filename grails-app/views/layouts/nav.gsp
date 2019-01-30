@@ -12,6 +12,7 @@
         <li><a href="/">HOME</a></li>
         <li><a href="/author/index">AUTHORS</a></li>
         <li><a href="/book/index">BOOKS</a></li>
+        <li><a href="/log/logs">LOGS</a></li>
     </ul>
     <g:layoutBody/>
 </body>

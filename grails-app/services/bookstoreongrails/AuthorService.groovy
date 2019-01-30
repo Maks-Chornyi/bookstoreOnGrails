@@ -1,20 +1,21 @@
 package bookstoreongrails
 
 import grails.gorm.transactions.Transactional
+import grails.web.servlet.mvc.GrailsParameterMap
 
 @Transactional
 class AuthorService {
+
+    LogService logService
 
     def serviceMethod() {
 
     }
 
     void save(Map<String, Object> params) {
-        new Author(params).save()
-    }
-
-    Author getAuthorInfoById(Map<String, Object> params) {
-        Author.get(params.id)
+        Author author = new Author(params)
+        author.save()
+        //logService.log("AddedAuthor", author)
     }
 
     void update(Map<String, Object> params) {
@@ -22,6 +23,21 @@ class AuthorService {
         Author author = Author.get(params.id)
         author.properties = params
         author.save(failOnError: true)
+        //logService.log("UpdatedAuthor", author)
+    }
+
+    void deleteAuthor(GrailsParameterMap grailsParameterMap) {
+        Author author = Author.get(grailsParameterMap.id)
+        try {
+            author.delete(flush: true)
+        } catch (Exception e) {
+            e.getStackTrace()
+        }
+        //logService.log("DeletedAuthor", author)
+    }
+
+    Author getAuthorInfoById(Map<String, Object> params) {
+        Author.get(params.id)
     }
 
     List<Author> getAllAuthors() {

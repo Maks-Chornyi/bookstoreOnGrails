@@ -2,16 +2,16 @@ package bookstoreongrails
 
 class LogController {
 
+    static allowedMethods = [deleteLogs: 'GET']
+
     LogService logService
 
     def logs() {
-        String json = '''
-            {
-                "id": 500,
-                "message": "hello"
-            }
-        '''
-        logService.getValuesOfJSON(json)
         [logsMap : logService.getAllLogs()]
+    }
+
+    def deleteLogs() {
+        logService.deleteLogs()
+        redirect(action: "logs")
     }
 }

@@ -7,13 +7,22 @@
         <meta name="layout" content="nav"/>
     </head>
     <body>
-        <p>Here should be logs</p>
-
+        <g:form controller="log" action="deleteLogs" method="GET" class="deleteLogsButton">
+            <button onclick="deleteAllLogs()">Delete All Logs</button>
+        </g:form>
+            <g:if test="${logsMap.size() > 0}">
                 <g:each in="${logsMap}" var="keys">
                     <div>
-                        <span><g:formatDate format="dd.MM.yyyy | hh:mm:ss" date="${keys.key}"></g:formatDate></span>
+                        <strong>
+                            <span><g:formatDate format="dd.MM.yyyy hh:mm:ss | " date="${keys.key}"></g:formatDate></span>
+                        </strong>
                         <span>${keys.value}</span>
                     </div>
                 </g:each>
+            </g:if>
+            <g:else>
+                <span>No logs yet</span>
+            </g:else>
+
     </body>
 </html>

@@ -139,3 +139,7 @@ li a {
 li a:hover {
     background-color: #111;
 }
+
+.deleteLogsButton {
+    margin: 15px 0px;
+}

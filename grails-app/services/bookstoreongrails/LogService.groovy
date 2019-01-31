@@ -1,13 +1,8 @@
 package bookstoreongrails
 
 import enums.Action
-import grails.converters.JSON
 import grails.gorm.transactions.Transactional
-import grails.plugins.redis.RedisService
-import groovy.json.JsonSlurper
 import redis.clients.jedis.Jedis
-
-import static groovy.json.JsonParserType.LAX as RELAX
 
 import java.sql.Timestamp
 import java.time.Instant
@@ -15,12 +10,12 @@ import java.time.Instant
 @Transactional
 class LogService {
 
-    RedisService redisService
-    Jedis jedis = new Jedis()
+    def redisService
 
     Map<Date, String> getAllLogs() {
-        Map<String, String> mapLogsKeyIsString = jedis.hgetAll("DeletedBook")
-        Map<Date, String> mapLogsKeyIsData = new HashMap<>()
+
+        Map<String, String> mapLogsKeyIsString = redisService.hgetAll("logs")
+        Map<Date, String> mapLogsKeyIsData = new TreeMap<>()
         Set<String> keysOfStringMap = mapLogsKeyIsString.keySet()
         keysOfStringMap.each {key ->
             Long timeStampLong = Long.parseLong(key)
@@ -34,21 +29,21 @@ class LogService {
     void log(String hashName, Object obj, Action action) {
         long timeStampMls = Instant.now().toEpochMilli()
         String newLogKey = Long.toString(timeStampMls)
-        String objJSON = obj as JSON
-        redisService.hset(hashName,newLogKey, objJSON)
+        redisService.hset(hashName, newLogKey, createLogStringForRedis(obj, action))
     }
 
-    String createJsonForRedisLogs(Object obj, Action action) {
-        String nameOfObject = obj.getClass()
-        String objString = obj as JSON
-        String jsonRes = """"""
-            ${nameofObject} ${objString} {action: action.name()}
-
-        """"""
+    String createLogStringForRedis(Object obj, Action action) {
+        String classNameOfObject = obj.class.getSimpleName()
+        String nameOfObject
+        if(obj instanceof Book) {
+            nameOfObject = obj.title
+        } else {
+            nameOfObject = obj.name
+        }
+        classNameOfObject + " \"" + nameOfObject + "\" was " + action.name()
     }
 
-    void getValuesOfJSON(String json) {
-        def jsonRes = new JsonSlurper().setType(RELAX).parseText(json)
-        println jsonRes.getClass()
+    void deleteLogs() {
+        redisService.del("logs")
     }
 }

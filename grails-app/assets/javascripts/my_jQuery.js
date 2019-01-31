@@ -24,6 +24,16 @@ function deleteBook(id) {
     }
 }
 
+function deleteAllLogs() {
+    var answ = confirm('Do you really wanna delete all logs? This action can\'t be revert');
+    if(answ) {
+        $.get('deleteLogs', function (status) {
+            console.log(status)
+        });
+    }
+
+}
+
 
 function openAuthorInfo(id) {
         $.post('getAuthorInfoById', {

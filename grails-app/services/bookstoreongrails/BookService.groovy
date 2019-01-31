@@ -33,7 +33,7 @@ class BookService {
             book.removeFromAuthors(author)
         }
         book.delete(flush: true)
-        //logService.log("DeletedBook", book)
+        logService.log("logs", book, Action.DELETED)
     }
 
     /**

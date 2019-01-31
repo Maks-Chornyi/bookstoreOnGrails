@@ -14,7 +14,7 @@
                 <g:each in="${logsMap}" var="keys">
                     <div>
                         <strong>
-                            <span><g:formatDate format="dd.MM.yyyy hh:mm:ss | " date="${keys.key}"></g:formatDate></span>
+                            <span><g:formatDate format="dd.MM.yyyy HH:mm:ss | " date="${keys.key}"></g:formatDate></span>
                         </strong>
                         <span>${keys.value}</span>
                     </div>

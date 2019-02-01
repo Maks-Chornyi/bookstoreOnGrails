@@ -6,6 +6,7 @@
         <asset:stylesheet src="style.css"/>
     </title>
     <g:layoutHead/>
+    <meta name="layout" content="test"/>
 </head>
 <body>
     <ul>
@@ -15,8 +16,6 @@
         <li><a href="/log/logs">LOGS</a></li>
     </ul>
     <g:layoutBody/>
-    <div class="footer">
-        © Maks Chornyi
-    </div>
+    <g:applyLayout name="test"/>
 </body>
 </html>

@@ -8,9 +8,8 @@
     <g:layoutHead/>
 </head>
 <body>
-<g:layoutBody/>
-<div class="footer">
-    © Maks Chornyi
-</div>
+    <div class="footer">
+        © Maks Chornyi
+    </div>
 </body>
 </html>

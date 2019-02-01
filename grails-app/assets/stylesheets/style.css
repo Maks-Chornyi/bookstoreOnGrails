@@ -131,7 +131,7 @@ li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 18px 16px;
     text-decoration: none;
 }
 
@@ -142,4 +142,15 @@ li a:hover {
 
 .deleteLogsButton {
     margin: 15px 0px;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 18px 0px;
 }

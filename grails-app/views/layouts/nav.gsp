@@ -15,5 +15,8 @@
         <li><a href="/log/logs">LOGS</a></li>
     </ul>
     <g:layoutBody/>
+    <div class="footer">
+        © Maks Chornyi
+    </div>
 </body>
 </html>
